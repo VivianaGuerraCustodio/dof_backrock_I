@@ -1,0 +1,10 @@
+<form [formGroup]="addKeyForm" novalidate (ngSubmit)="addKey()">
+    <label for="">Palabra clave: <input type="text" formControlName="key"></label>
+    <button type="submit">Agregar</button>
+</form>
+
+<div *ngFor="let key of keys$">
+    <h3>{{key.key}}</h3>
+    <button type="button" (click)="deleteKey(key.id)">Delete</button>
+    <button type="button" (click)="updateKey(key.id)">Update</button>
+</div>
