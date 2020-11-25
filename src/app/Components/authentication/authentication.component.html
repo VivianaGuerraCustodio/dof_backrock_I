@@ -1,0 +1,56 @@
+<!-- <div>
+  <form [formGroup]="authForm" novalidate (ngSubmit)="login()">
+    <mat-card class="shipping-card">
+      <mat-card-header>
+        <mat-card-title>Add item to menu</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>Ingresa tu correo</mat-label>
+              <input
+                matInput
+                placeholder="pat@blackrock.com"
+                [formControl]="email"
+                required
+              />
+              <mat-error *ngIf="email.invalid">{{
+                getErrorMessage()
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>Ingresa tu contraseña</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="hide = !hide"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide"
+              >
+                <mat-icon>{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div> -->
+
+<form [formGroup]="authForm" novalidate (ngSubmit)="loginUser()">
+  <label>Correo: <input type="text" formControlName="email" /></label>
+  <label
+    >Contraseña: <input type="password" formControlName="password"
+  /></label>
+  <button type="submit">Iniciar sesión</button>
+  <button type="button" (click)="resetPassword()">Olvide contraseña</button>
+</form>
