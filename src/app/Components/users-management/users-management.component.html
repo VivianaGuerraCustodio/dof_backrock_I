@@ -1,0 +1,25 @@
+<form
+  [formGroup]="addUserForm"
+  novalidate
+  (ngSubmit)="addUser()"
+  (ngSubmit)="userRegister()"
+>
+  <label for="">Nombre: <input type="text" formControlName="name" /></label>
+  <label for="">Email: <input type="text" formControlName="email" /></label>
+  <select placeholder="role" formControlName="role">
+    <option *ngFor="let role of roles">
+      {{ role.cat }}
+    </option>
+  </select>
+
+  <button type="submit">Agregar</button>
+</form>
+
+<div *ngFor="let user of users$">
+  <h3>{{ user.name }}</h3>
+  <h3>{{ user.email }}</h3>
+  <h3>{{ user.role }}</h3>
+
+  <button type="button" (click)="deleteUser(user.id)">Borrar</button>
+  <button type="button" (click)="addNewUser()">Actualizar</button>
+</div>
