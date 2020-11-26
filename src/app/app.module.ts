@@ -15,9 +15,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UsersManagementComponent } from './Components/users-management/users-management.component';
-import { EmailsManagementComponent } from './Components/emails-management/emails-management.component';
+import { UsersManagementComponent } from './Components/admin/users-management/users-management.component';
+import { EmailsManagementComponent } from './Components/admin/emails-management/emails-management.component';
 import { AdminComponent } from './Components/admin/admin.component';
+import { MaterialModule } from './material.module';
 // import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AdminComponent } from './Components/admin/admin.component';
     UsersManagementComponent,
     EmailsManagementComponent,
     AdminComponent,
+    // MaterialModule,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,7 @@ import { AdminComponent } from './Components/admin/admin.component';
     MatPaginatorModule,
     MatSortModule,
     BrowserAnimationsModule,
-    // MatTabsModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

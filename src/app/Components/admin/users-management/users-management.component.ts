@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudUsersService } from '../../Services/users-management-service/users-management.service';
+import { CrudUsersService } from '../../../Services/users-management-service/users-management.service';
 import { ActivatedRoute } from '@angular/router';
 import {
   Validators,

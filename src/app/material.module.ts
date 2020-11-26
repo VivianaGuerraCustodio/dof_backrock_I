@@ -1,15 +1,25 @@
 import { NgModule } from '@angular/core';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-// import { MatTabsModule } from '@angular/material/tabs';
-import { MatTabGroup } from '@angular/material/tabs';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTabsModule } from '@angular/material';
+
+// import {
+//   MatCardModule,
+//   MatTableModule,
+//   MatFormFieldModule,
+//   MatPaginator,
+//   MatSortModule,
+//   MatTableModule,
+//   MatTabsModule,
+//   MatTabGroupModule,
+//   BrowserAnimationsModule,
+// } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -17,11 +27,10 @@ import { MatTabsModule } from '@angular/material';
     MatCardModule,
     MatTableModule,
     MatFormFieldModule,
-    MatPaginator,
-    MatSort,
-    MatTable,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
     MatTabsModule,
-    MatTabGroup,
     BrowserAnimationsModule,
   ],
   exports: [
@@ -29,11 +38,10 @@ import { MatTabsModule } from '@angular/material';
     MatCardModule,
     MatTableModule,
     MatFormFieldModule,
-    MatPaginator,
-    MatSort,
-    MatTable,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
     MatTabsModule,
-    MatTabGroup,
     BrowserAnimationsModule,
   ],
 })
