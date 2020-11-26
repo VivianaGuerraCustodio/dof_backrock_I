@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationComponent } from './Components/authentication/authentication.component';
 import { AdminComponent } from './Components/admin/admin.component';
+import { DocumentsComponent } from './Components/documents/documents.component';
+import { SecurityComponent } from './Components/security/security.component';
 
 const routes: Routes = [
   {
@@ -13,13 +15,17 @@ const routes: Routes = [
     path: 'inicio',
     component: AuthenticationComponent,
   },
-  // {
-  //   path: 'Documentos',
-  //   component: adsa,
-  // },
   {
-    path: 'Administración',
+    path: 'documentos',
+    component: DocumentsComponent,
+  },
+  {
+    path: 'admin',
     component: AdminComponent,
+  },
+  {
+    path: 'seguridad',
+    component: SecurityComponent,
   },
 ];
 

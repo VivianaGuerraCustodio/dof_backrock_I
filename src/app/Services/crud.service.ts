@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CrudService {
-  constructor(public firestore: AngularFirestore) {}
+  constructor(private firestore: AngularFirestore) {}
 
   addKey(key: string): Promise<void> {
     const id = this.firestore.createId();
@@ -37,8 +37,8 @@ export class CrudService {
         map((actions) =>
           actions.map((a) => {
             const data = a.payload.doc.data() as Keywords;
-            // const id = a.payload.doc.id;
-            return data;
+            const id = a.payload.doc.id;
+            return { id, ...data };
           })
         )
       );

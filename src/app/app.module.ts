@@ -22,6 +22,8 @@ import { EmailsManagementComponent } from './Components/admin/emails-management/
 import { AdminComponent } from './Components/admin/admin.component';
 import { MaterialModule } from './material';
 import { MenuComponent } from './Components/menu/menu.component';
+import { DocumentsComponent } from './Components/documents/documents.component';
+import { SecurityComponent } from './Components/security/security.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { MenuComponent } from './Components/menu/menu.component';
     EmailsManagementComponent,
     AdminComponent,
     MenuComponent,
+    DocumentsComponent,
+    SecurityComponent,
   ],
   imports: [
     BrowserModule,

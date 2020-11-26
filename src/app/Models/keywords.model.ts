@@ -1,4 +1,4 @@
-export
-    interface Keywords {
-    key: string;
+export interface Keywords {
+  id: string;
+  key: string;
 }

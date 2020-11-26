@@ -5,6 +5,8 @@ import { MatTable } from '@angular/material/table';
 import { Keywords } from '../../Models/keywords.model';
 import { KeywordsTableDataSource } from './keywords-table-datasource';
 import { CrudService } from '../../Services/crud.service';
+import { ActivatedRoute } from '@angular/router';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-keywords-table',
@@ -12,7 +14,12 @@ import { CrudService } from '../../Services/crud.service';
   styleUrls: ['./keywords-table.component.scss'],
 })
 export class KeywordsTableComponent implements AfterViewInit, OnInit {
-  constructor(private crudService: CrudService) {}
+  addKeyForm = this.fb.group({
+    key: [null, Validators.required],
+    // newKey: this.fb.array([]),
+  });
+  public itemId: string;
+  constructor(private crudService: CrudService, private fb: FormBuilder) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -28,10 +35,37 @@ export class KeywordsTableComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     this.crudService.getAllKeywords().subscribe((key) => {
-      this.dataSource.data = key;
+      this.dataSource.data = [...key];
+      console.log(this.dataSource.data);
+
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;
     });
+  }
+
+  deleteKeyword(row: Keywords): void {
+    const confirmation = confirm('Seguro que deseas eliminar esta palabra?');
+    if (confirmation) {
+      this.crudService.deleteKey(row.id);
+    }
+  }
+
+  addKey(): void {
+    const key = this.addKeyForm.value.key;
+
+    this.crudService
+      .addKey(key)
+      .then(() => {
+        alert('La palabra se añadió');
+      })
+      .catch((err) => {
+        alert('Error ' + err);
+      });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.data.filter = filterValue.trim().toLowerCase();
   }
 }
