@@ -2,10 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import {
-  KeywordsTableDataSource,
-  KeywordsTableItem,
-} from './keywords-table-datasource';
+import { Keywords } from '../../Models/keywords.model';
+import { KeywordsTableDataSource } from './keywords-table-datasource';
 import { CrudService } from '../../Services/crud.service';
 
 @Component({
@@ -14,34 +12,26 @@ import { CrudService } from '../../Services/crud.service';
   styleUrls: ['./keywords-table.component.scss'],
 })
 export class KeywordsTableComponent implements AfterViewInit, OnInit {
-  public keys$;
+  constructor(private crudService: CrudService) {}
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<KeywordsTableItem>;
+  @ViewChild(MatTable) table: MatTable<Keywords>;
   dataSource: KeywordsTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
-
-  constructor(private crudService: CrudService) {}
+  displayedColumns = ['key', 'edit', 'delete'];
 
   ngOnInit(): void {
-    this.dataSource = new KeywordsTableDataSource();
-    this.crudService
-      .getKey()
-      .pipe()
-      .subscribe((key) => {
-        this.keys$ = key;
-        console.log(this.keys$);
-      });
+    this.dataSource = new KeywordsTableDataSource(this.crudService);
   }
 
   ngAfterViewInit(): void {
-    console.log(this.dataSource);
-    console.log(this.keys$);
-
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.crudService.getAllKeywords().subscribe((key) => {
+      this.dataSource.data = key;
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.table.dataSource = this.dataSource;
+    });
   }
 }

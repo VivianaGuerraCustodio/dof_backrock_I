@@ -1,14 +1,31 @@
-import { OnInit } from '@angular/core';
-import { CrudService } from '../../Services/crud.service';
+import { Component, OnInit } from '@angular/core';
+import { CrudService } from '../../../Services/crud.service';
 import { ActivatedRoute } from '@angular/router';
+import {
+  Validators,
+  FormBuilder,
+  FormArray,
+  FormControl,
+} from '@angular/forms';
 
-export class KeywordsComponent implements OnInit {
+@Component({
+  selector: 'app-keywords-management',
+  templateUrl: './keywords-management.component.html',
+  styleUrls: ['./keywords-management.component.scss'],
+})
+export class KeywordsManagementComponent implements OnInit {
+  addKeyForm = this.fb.group({
+    key: [null, Validators.required],
+    newKey: this.fb.array([]),
+  });
+
   public keys$;
   public itemId: string;
 
   constructor(
     private crudService: CrudService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {

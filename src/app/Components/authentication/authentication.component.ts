@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
@@ -9,6 +9,12 @@ import { AuthService } from '../../Services/auth.service';
   styleUrls: ['./authentication.component.scss'],
 })
 export class AuthenticationComponent implements OnInit {
+  hide = true;
+
+  @Input() error: string | null;
+
+  @Output() submitEM = new EventEmitter();
+
   // hide = true;
   // email = new FormControl('', [Validators.required, Validators.email]);
   // getErrorMessage(): any {

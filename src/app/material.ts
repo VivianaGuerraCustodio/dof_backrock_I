@@ -8,18 +8,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-// import {
-//   MatCardModule,
-//   MatTableModule,
-//   MatFormFieldModule,
-//   MatPaginator,
-//   MatSortModule,
-//   MatTableModule,
-//   MatTabsModule,
-//   MatTabGroupModule,
-//   BrowserAnimationsModule,
-// } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   imports: [
@@ -32,6 +24,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTableModule,
     MatTabsModule,
     BrowserAnimationsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
   ],
   exports: [
     MatIconModule,
@@ -43,6 +39,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTableModule,
     MatTabsModule,
     BrowserAnimationsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
   ],
 })
 export class MaterialModule {}

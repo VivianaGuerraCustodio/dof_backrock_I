@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/firestore';
+import { ActionSequence } from 'protractor';
 import { Observable } from 'rxjs';
 import { Keywords } from '../Models/keywords.model';
-
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CrudService {
-
-  constructor(public firestore: AngularFirestore) { }
+  constructor(public firestore: AngularFirestore) {}
 
   addKey(key: string): Promise<void> {
     const id = this.firestore.createId();
@@ -21,11 +24,28 @@ export class CrudService {
   }
 
   getKey(): Observable<Keywords[]> {
-    return this.firestore.collection<Keywords>('keywords').valueChanges({ idField: 'id' });
+    return this.firestore
+      .collection<Keywords>('keywords')
+      .valueChanges({ idField: 'id' });
   }
 
-  addArrKey(key: Array<string>): Promise<void> {
-    const id = this.firestore.createId();
-    return this.firestore.doc(`keys/${id}`).set({ key });
+  getAllKeywords(): Observable<Keywords[]> {
+    return this.firestore
+      .collection<Keywords>('keywords')
+      .snapshotChanges()
+      .pipe(
+        map((actions) =>
+          actions.map((a) => {
+            const data = a.payload.doc.data() as Keywords;
+            // const id = a.payload.doc.id;
+            return data;
+          })
+        )
+      );
   }
+
+  // addArrKey(key: Array<string>): Promise<void> {
+  //   const id = this.firestore.createId();
+  //   return this.firestore.doc(`keys/${id}`).set({ key });
+  // }
 }
