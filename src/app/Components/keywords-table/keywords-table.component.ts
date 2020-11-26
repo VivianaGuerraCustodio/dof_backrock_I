@@ -24,23 +24,24 @@ export class KeywordsTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<Keywords>;
+
   dataSource: KeywordsTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['key', 'edit', 'delete'];
 
   ngOnInit(): void {
-    this.dataSource = new KeywordsTableDataSource(this.crudService);
+    this.dataSource = new KeywordsTableDataSource(
+      this.crudService.getAllKeywords()
+    );
   }
 
   ngAfterViewInit(): void {
     this.crudService.getAllKeywords().subscribe((key) => {
       this.dataSource.data = key;
-      console.log(this.dataSource.data);
-
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      this.table.dataSource = this.dataSource;
+      this.table.dataSource = this.dataSource.data;
     });
   }
 
@@ -53,10 +54,10 @@ export class KeywordsTableComponent implements AfterViewInit, OnInit {
 
   addKey(): void {
     const key = this.addKeyForm.value.key;
-
     this.crudService
       .addKey(key)
       .then(() => {
+        this.table.renderRows();
         alert('La palabra se añadió');
       })
       .catch((err) => {

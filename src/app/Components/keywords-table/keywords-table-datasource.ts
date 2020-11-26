@@ -12,11 +12,12 @@ import { CrudService } from 'src/app/Services/crud.service';
  * (including sorting, pagination, and filtering).
  */
 export class KeywordsTableDataSource extends DataSource<Keywords> {
-  data: any = this.crudService.getKey();
+  data: any = this.obsKeywords;
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor(private crudService: CrudService) {
+  // constructor(private crudService: CrudService) {
+  constructor(private obsKeywords: Observable<Keywords[]>) {
     super();
   }
 
@@ -28,8 +29,9 @@ export class KeywordsTableDataSource extends DataSource<Keywords> {
   connect(): Observable<Keywords[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
+
     const dataMutations = [
-      observableOf(this.data),
+      this.data,
       this.paginator.page,
       this.sort.sortChange,
     ];
@@ -69,7 +71,7 @@ export class KeywordsTableDataSource extends DataSource<Keywords> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'key':
-          return compare(a.key, b.key, isAsc);
+          return compare(a.key.toLowerCase(), b.key.toLowerCase(), isAsc);
         // case 'id':
         // return compare(+a.id, +b.id, isAsc);
         default:
