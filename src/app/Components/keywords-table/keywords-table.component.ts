@@ -35,7 +35,7 @@ export class KeywordsTableComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     this.crudService.getAllKeywords().subscribe((key) => {
-      this.dataSource.data = [...key];
+      this.dataSource.data = key;
       console.log(this.dataSource.data);
 
       this.dataSource.sort = this.sort;
