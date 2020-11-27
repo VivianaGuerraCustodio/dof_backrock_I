@@ -1,3 +1,13 @@
+<mat-form-field>
+  <mat-label>Buscador</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Ej. Camila"
+    #input
+  />
+</mat-form-field>
+
 <form
   [formGroup]="addUserForm"
   novalidate
@@ -15,11 +25,63 @@
   <button type="submit">Agregar</button>
 </form>
 
-<div *ngFor="let user of users$">
-  <h3>{{ user.name }}</h3>
-  <h3>{{ user.email }}</h3>
-  <h3>{{ user.role }}</h3>
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Keyword Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+    </ng-container>
 
-  <button type="button" (click)="deleteUser(user.id)">Borrar</button>
-  <!-- <button type="button" (click)="addNewUser()">Actualizar</button> -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Correo</th>
+      <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Rol de Usuario</th>
+      <td mat-cell *matCellDef="let row">{{ row.role }}</td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Editar</th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          mat-icon-button
+          class="actions-btn"
+          aria-label="Boton de editar"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <!-- Actions Column -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          type="button"
+          mat-icon-button
+          class="actions-btn"
+          aria-label="Boton de borrar"
+          (click)="deleteUser(row)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    #paginator
+    [length]="dataSource?.data.length"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+  >
+  </mat-paginator>
 </div>

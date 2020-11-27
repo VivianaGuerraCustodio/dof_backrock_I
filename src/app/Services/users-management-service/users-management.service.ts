@@ -6,12 +6,13 @@ import {
 import { Observable } from 'rxjs';
 import { Users } from '../../Models/users.model';
 import firebase from 'firebase/app';
+import { map } from 'rxjs/operators';
 import 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CrudUsersService {
+export class UsersManagementService {
   constructor(public firestore: AngularFirestore) {}
 
   addUser(name: string, email: string, role: string): Promise<void> {
@@ -23,10 +24,20 @@ export class CrudUsersService {
     return this.firestore.doc(`users/${userId}`).delete();
   }
 
-  getUser(): Observable<Users[]> {
+  getUsers(): Observable<Users[]> {
     return this.firestore
       .collection<Users>('users')
-      .valueChanges({ idField: 'id' });
+      .snapshotChanges()
+      .pipe(
+        map((actions) =>
+          actions.map((a) => {
+            const data = a.payload.doc.data() as Users;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          })
+        )
+      );
+    // .valueChanges({ idField: 'id' });
   }
 
   userRegister(email: string): Promise<any> {

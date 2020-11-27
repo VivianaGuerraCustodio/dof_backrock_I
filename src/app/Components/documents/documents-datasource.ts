@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
-import { Keywords } from '../../Models/keywords.model';
+import { Documents } from '../../Models/documents.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
@@ -10,12 +10,12 @@ import { Observable, merge } from 'rxjs';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class KeywordsTableDataSource extends DataSource<Keywords> {
-  data: any = this.obsKeywords;
+export class DocumentsTableDataSource extends DataSource<Documents> {
+  data: any = this.obsDocuments;
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor(private obsKeywords: Observable<Keywords[]>) {
+  constructor(private obsDocuments: Observable<Documents[]>) {
     super();
   }
 
@@ -24,7 +24,7 @@ export class KeywordsTableDataSource extends DataSource<Keywords> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<Keywords[]> {
+  connect(): Observable<Documents[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
 
@@ -51,7 +51,7 @@ export class KeywordsTableDataSource extends DataSource<Keywords> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: Keywords[]) {
+  private getPagedData(data: Documents[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -60,7 +60,7 @@ export class KeywordsTableDataSource extends DataSource<Keywords> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: Keywords[]) {
+  private getSortedData(data: Documents[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
