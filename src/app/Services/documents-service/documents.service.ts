@@ -9,7 +9,7 @@ export class DocumentsService {
   constructor(private http: HttpClient) {}
 
   /** POST: add a new hero to the database */
-  getDocuments(dateStart): Observable<Documents> {
+  getDocuments(dateStart): Observable<Documents[]> {
     const documentsUrl = 'http://localhost:5000/documentos';
     const body = JSON.stringify({ dateStart });
 
@@ -19,6 +19,6 @@ export class DocumentsService {
       }),
     };
 
-    return this.http.post<Documents>(documentsUrl, body, httpOptions);
+    return this.http.post<Documents[]>(documentsUrl, body, httpOptions);
   }
 }

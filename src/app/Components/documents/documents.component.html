@@ -1,0 +1,100 @@
+<!-- <form [formGroup]="addKeyForm" novalidate (ngSubmit)="addKey()">
+  <mat-form-field appearance="fill">
+    <mat-label>Moment.js datepicker</mat-label>
+    <input matInput [matDatepicker]="dp" [formControl]="date" />
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp></mat-datepicker>
+  </mat-form-field>
+</form> -->
+
+<!-- <mat-form-field>
+  <mat-label>Buscador</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Ej. Inversión"
+    #input
+  />
+</mat-form-field> -->
+
+<form [formGroup]="addKeyForm" novalidate (ngSubmit)="getDocuments(dateStart)">
+  <mat-form-field appearance="fill">
+    <mat-label>Selecciona una fecha</mat-label>
+    <input
+      matInput
+      [matDatepicker]="dp"
+      [formControl]="dateForm"
+      (dateChange)="prueba($event)"
+    />
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-button type="submit">Buscar</button>
+</form>
+
+<!-- <mat-form-field appearance="fill">
+  <mat-label>Input & change events</mat-label>
+  <input
+    matInput
+    [matDatepicker]="picker"
+    (dateInput)="addEvent('input', $event)"
+    (dateChange)="addEvent('change', $event)"
+    [formControl]="dateForm"
+  />
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field> -->
+
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Keyword Column -->
+    <ng-container matColumnDef="text">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</th>
+      <td mat-cell *matCellDef="let row">
+        <a href="{{ row.href }}">{{ row.text }}</a>
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Editar</th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          mat-icon-button
+          class="actions-btn"
+          aria-label="Boton de editar"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <!-- Actions Column -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          type="button"
+          mat-icon-button
+          class="actions-btn"
+          aria-label="Boton de borrar"
+          (click)="deleteKeyword(row)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    #paginator
+    [length]="dataSource?.data.length"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+  >
+  </mat-paginator>
+</div>

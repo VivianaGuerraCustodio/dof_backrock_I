@@ -68,8 +68,8 @@ export class DocumentsTableDataSource extends DataSource<Documents> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'key':
-          return compare(a.key.toLowerCase(), b.key.toLowerCase(), isAsc);
+        case 'text':
+          return compare(a.text.toLowerCase(), b.text.toLowerCase(), isAsc);
         default:
           return 0;
       }
