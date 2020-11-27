@@ -30,7 +30,7 @@ export class CrudUsersService {
   }
 
   userRegister(email: string): Promise<any> {
-    const password = '12345';
+    const password = '654321';
     return firebase.auth().createUserWithEmailAndPassword(email, password);
   }
 }
