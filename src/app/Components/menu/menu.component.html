@@ -1,0 +1,14 @@
+<p>
+  <mat-toolbar color="primary">
+    <span>Blackrock</span>
+    <span class="spacer"></span>
+
+    <button routerLink="/documentos" mat-button>Documentos</button>
+
+    <button mat-button routerLink="/admin">Administración</button>
+
+    <button routerLink="/seguridad" mat-button>Seguridad</button>
+
+    <button mat-button (click)="logoutUser()">Cerrar Sesión</button>
+  </mat-toolbar>
+</p>

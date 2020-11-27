@@ -1,0 +1,27 @@
+<form [formGroup]="addKeyForm" novalidate (ngSubmit)="addKey()">
+  <label for=""
+    >Palabra clave: <input type="text" formControlName="key"
+  /></label>
+  <button type="submit">Agregar</button>
+</form>
+
+<div *ngFor="let key of keys$">
+  <h3>{{ key.key }}</h3>
+  <button type="button" (click)="deleteKey(key.id)">Borrar</button>
+  <button type="button" (click)="addNewKey()">Actualizar</button>
+</div>
+
+<!-- 
+<div formArrayName="newKey" class="hide">
+  <div *ngFor="let key of newKey.controls">
+    <div>
+      <input placeholder="nueva palabra" type="text" />
+      <button type="button" (click)="updateKey()">Actualizar palabra</button>
+    </div>
+  </div>
+</div>  -->
+
+<!-- BOTON CON ICONO PARA EDITAR Y ELIMINAR -->
+<!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <mat-icon>menu</mat-icon>
+</button> -->

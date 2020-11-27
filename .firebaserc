@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "blackrock-dof"
+  },
+  "targets": {
+    "blackrock-dof": {
+      "hosting": {
+        "dof-blackrock": [
+          "blackrock-dof"
+        ]
+      }
+    }
   }
 }
