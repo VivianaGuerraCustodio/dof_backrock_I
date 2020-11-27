@@ -8,9 +8,13 @@ import { AuthService } from '../../Services/auth.service';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
+  userLogged;
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userLogged = this.authService.hasUser();
+    console.log(this.userLogged);
+  }
 
   logoutUser(): void {
     this.authService

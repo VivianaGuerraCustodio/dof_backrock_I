@@ -15,7 +15,7 @@ import 'firebase/auth';
 export class UsersManagementService {
   constructor(public firestore: AngularFirestore) {}
 
-  addUser(name: string, email: string, role: string): Promise<void> {
+  async addUser(name: string, email: string, role: string): Promise<void> {
     const id = this.firestore.createId();
     return this.firestore.doc(`users/${id}`).set({ name, email, role });
   }

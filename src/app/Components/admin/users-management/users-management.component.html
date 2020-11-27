@@ -16,6 +16,7 @@
   <label for="">Nombre: <input type="text" formControlName="name" /></label>
   <label for="">Email: <input type="text" formControlName="email" /></label>
   <select placeholder="role" formControlName="role">
+    <option value="" selected>Elige un rol</option>
     <option *ngFor="let role of roles">
       {{ role.cat }}
     </option>

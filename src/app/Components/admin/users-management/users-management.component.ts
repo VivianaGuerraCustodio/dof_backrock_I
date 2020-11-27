@@ -26,8 +26,8 @@ export class UsersManagementComponent implements AfterViewInit, OnInit {
   });
 
   roles = [
-    { cat: 'Administrador', val: 'admin' },
     { cat: 'Usuario', val: 'user' },
+    { cat: 'Administrador', val: 'admin' },
   ];
 
   public users$;
@@ -53,8 +53,6 @@ export class UsersManagementComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     this.usersManagementService.getUsers().subscribe((users) => {
-      console.log(users);
-
       this.dataSource.data = users;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -81,22 +79,26 @@ export class UsersManagementComponent implements AfterViewInit, OnInit {
     const email = this.addUserForm.value.email;
     const role = this.addUserForm.value.role;
 
-    this.usersManagementService
-      .addUser(name, email, role)
-      .then(() => {
-        alert('El usuario se añadió a la base de datos');
-        this.getData();
-      })
-      .catch((err) => {
-        alert('Error ' + err);
-      });
+    console.log(role);
+
+    if (name && email && role !== '' && role != null) {
+      this.usersManagementService
+        .addUser(name, email, role)
+        .then(() => {
+          alert('El usuario se añadió a la base de datos');
+          this.getData();
+        })
+        .catch((err) => {
+          alert('Error ' + err);
+        });
+    } else {
+      alert('Faltan campos');
+    }
   }
 
   userRegister(): any {
     const email = this.addUserForm.value.email;
-    this.usersManagementService.userRegister(email).then(() => {
-      alert('El usuario se registro');
-    });
+    this.usersManagementService.userRegister(email);
   }
 
   applyFilter(event: Event) {
