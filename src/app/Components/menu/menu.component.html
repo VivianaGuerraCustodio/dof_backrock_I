@@ -1,4 +1,4 @@
-<p>
+<!--<p>
   <mat-toolbar color="primary">
     <span routerLink="/">Blackrock</span>
     <span id="titulo" class="spacer"></span>
@@ -11,4 +11,30 @@
 
     <button mat-button (click)="logoutUser()">Cerrar Sesión</button>
   </mat-toolbar>
-</p>
+</p> -->
+<mat-toolbar color="primary">
+  <div fxHide.gt-xs>
+      <button mat-icon-button (click)="onToggleSidenav()">
+          <mat-icon>menu</mat-icon>
+      </button>
+  </div>
+  <div>
+      <a class="titulo" routerLink="/">Blackrock</a>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+          <li>
+              <a routerLink="/documentos">Documentos</a>
+          </li>
+          <li>
+              <a routerLink="/seguridad">Seguridad</a>
+          </li>
+          <li>
+            <a routerLink="/admin">Administración</a>
+        </li>
+        <li>
+          <a (click)="logoutUser()" routerLink="/admin">Cerrar Sesión</a>
+      </li>
+      </ul>
+  </div>
+</mat-toolbar>

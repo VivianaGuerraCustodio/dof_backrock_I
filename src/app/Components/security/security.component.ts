@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./security.component.scss']
 })
 export class SecurityComponent implements OnInit {
-
+  hide = true;
   constructor() { }
-
+  confirm() {
+    alert("tu contraseña se actualizó de manera exitosa, por favor revisa tu correo ")
+  };
   ngOnInit(): void {
   }
 
