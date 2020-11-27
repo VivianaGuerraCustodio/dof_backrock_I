@@ -5,3 +5,36 @@ mat-toolbar span #titulo {
   outline: none;
   cursor: pointer;
 }
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+
+.navigation-items {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  li {
+    flex-direction: flex-end;
+    padding: 0 25px;
+    justify-content: space-around;
+  }
+}
+.titulo {
+  padding-right: 8em;
+}
+mat-toolbar {
+  border-radius: 3px;
+}
+
+@media (max-width: 959px) {
+  mat-toolbar {
+    border-radius: 0px;
+  }
+}
