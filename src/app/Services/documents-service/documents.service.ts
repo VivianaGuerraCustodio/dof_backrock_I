@@ -10,7 +10,7 @@ export class DocumentsService {
 
   /** POST: add a new hero to the database */
   getDocuments(dateStart): Observable<Documents[]> {
-    const documentsUrl = 'http://localhost:5000/documentos';
+    const documentsUrl = 'https://api-dof.herokuapp.com/documentos';
     const body = JSON.stringify({ dateStart });
 
     const httpOptions = {
