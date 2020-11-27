@@ -19,7 +19,7 @@ const routes: Routes = [
   {
     path: 'documentos',
     component: DocumentsComponent,
-    // canActivate: [AdminGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'admin',
