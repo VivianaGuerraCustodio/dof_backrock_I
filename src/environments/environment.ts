@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyC7yzi9vDq6ja2LAAJurv1BthgI6B7D2ck",
-    authDomain: "blackrock-dof.firebaseapp.com",
-    databaseURL: "https://blackrock-dof.firebaseio.com",
-    projectId: "blackrock-dof",
-    storageBucket: "blackrock-dof.appspot.com",
-    messagingSenderId: "596535816835",
-    appId: "1:596535816835:web:cb88706119816de4ea21b6"
-  }
+    apiKey: 'AIzaSyC7yzi9vDq6ja2LAAJurv1BthgI6B7D2ck',
+    authDomain: 'blackrock-dof.firebaseapp.com',
+    databaseURL: 'https://blackrock-dof.firebaseio.com',
+    projectId: 'blackrock-dof',
+    storageBucket: 'blackrock-dof.appspot.com',
+    messagingSenderId: '596535816835',
+    appId: '1:596535816835:web:cb88706119816de4ea21b6',
+  },
 };
 
 /*

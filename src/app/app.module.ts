@@ -16,6 +16,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { HttpClientModule } from '@angular/common/http';
 
 import { UsersManagementComponent } from './Components/admin/users-management/users-management.component';
 import { EmailsManagementComponent } from './Components/admin/emails-management/emails-management.component';
@@ -24,6 +26,10 @@ import { MaterialModule } from './material';
 import { MenuComponent } from './Components/menu/menu.component';
 import { DocumentsComponent } from './Components/documents/documents.component';
 import { SecurityComponent } from './Components/security/security.component';
+
+import * as firebase from 'firebase';
+
+firebase.default.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [
@@ -42,8 +48,8 @@ import { SecurityComponent } from './Components/security/security.component';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
     ReactiveFormsModule,
     FormsModule,
     MatIconModule,
@@ -52,6 +58,8 @@ import { SecurityComponent } from './Components/security/security.component';
     MatSortModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatDatepickerModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

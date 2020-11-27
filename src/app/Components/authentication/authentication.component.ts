@@ -38,6 +38,7 @@ export class AuthenticationComponent implements OnInit {
   async loginUser(): Promise<void> {
     const email = this.authForm.get('email').value;
     const password = this.authForm.get('password').value;
+    console.log(email, password);
 
     this.authService.loginUser(email, password).then(() => {
       // this.router.navigateByUrl('home');

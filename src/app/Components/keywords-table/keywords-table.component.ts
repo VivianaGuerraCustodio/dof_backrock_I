@@ -31,6 +31,10 @@ export class KeywordsTableComponent implements AfterViewInit, OnInit {
   displayedColumns = ['key', 'edit', 'delete'];
 
   ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
     this.dataSource = new KeywordsTableDataSource(
       this.crudService.getAllKeywords()
     );
@@ -41,7 +45,7 @@ export class KeywordsTableComponent implements AfterViewInit, OnInit {
       this.dataSource.data = key;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      this.table.dataSource = this.dataSource.data;
+      this.table.dataSource = this.dataSource;
     });
   }
 
@@ -49,6 +53,7 @@ export class KeywordsTableComponent implements AfterViewInit, OnInit {
     const confirmation = confirm('Seguro que deseas eliminar esta palabra?');
     if (confirmation) {
       this.crudService.deleteKey(row.id);
+      this.getData();
     }
   }
 
@@ -57,8 +62,8 @@ export class KeywordsTableComponent implements AfterViewInit, OnInit {
     this.crudService
       .addKey(key)
       .then(() => {
-        this.table.renderRows();
         alert('La palabra se añadió');
+        this.getData();
       })
       .catch((err) => {
         alert('Error ' + err);
