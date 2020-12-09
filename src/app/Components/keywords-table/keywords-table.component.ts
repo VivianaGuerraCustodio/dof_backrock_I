@@ -28,7 +28,7 @@ export class KeywordsTableComponent implements AfterViewInit, OnInit {
   dataSource: KeywordsTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['key', 'edit', 'delete'];
+  displayedColumns = ['key', 'delete'];
 
   ngOnInit(): void {
     this.getData();

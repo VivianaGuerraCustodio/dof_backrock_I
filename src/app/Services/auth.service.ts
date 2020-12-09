@@ -28,4 +28,9 @@ export class AuthService {
   hasUser() {
     return this.af.authState;
   }
+
+  updatePass(newPassword): Promise<void> {
+    let user = firebase.auth().currentUser;
+    return user.updatePassword(newPassword);
+  }
 }

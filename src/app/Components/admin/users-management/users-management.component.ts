@@ -45,7 +45,7 @@ export class UsersManagementComponent implements AfterViewInit, OnInit {
 
   dataSource: UsersTableDataSource;
 
-  displayedColumns = ['name', 'email', 'role', 'edit', 'delete'];
+  displayedColumns = ['name', 'email', 'role', 'delete'];
 
   ngOnInit(): void {
     this.getData();
