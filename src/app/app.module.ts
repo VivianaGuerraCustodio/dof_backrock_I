@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { KeywordsManagementComponent } from './Components/admin/keywords-management/keywords-management.component';
 import { AuthenticationComponent } from './Components/authentication/authentication.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { KeywordsTableComponent } from './Components/keywords-table/keywords-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -36,7 +35,6 @@ firebase.default.initializeApp(environment.firebase);
     AppComponent,
     KeywordsManagementComponent,
     AuthenticationComponent,
-    KeywordsTableComponent,
     UsersManagementComponent,
     EmailsManagementComponent,
     AdminComponent,

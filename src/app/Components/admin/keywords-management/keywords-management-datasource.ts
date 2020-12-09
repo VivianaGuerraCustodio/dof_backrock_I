@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
-import { Keywords } from '../../Models/keywords.model';
+import { Keywords } from '../../../Models/keywords.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { Observable, merge } from 'rxjs';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class KeywordsTableDataSource extends DataSource<Keywords> {
+export class KeywordsManagementDataSource extends DataSource<Keywords> {
   data: any = this.obsKeywords;
   paginator: MatPaginator;
   sort: MatSort;

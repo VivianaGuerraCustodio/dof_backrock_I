@@ -1,25 +1,34 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
-import { KeywordsComponent } from './keywords.component';
+import { KeywordsManagementComponent } from './keywords-management.component';
 
-describe('KeywordsComponent', () => {
-  let component: KeywordsComponent;
-  let fixture: ComponentFixture<KeywordsComponent>;
+describe('KeywordsManagementComponent', () => {
+  let component: KeywordsManagementComponent;
+  let fixture: ComponentFixture<KeywordsManagementComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ KeywordsComponent ]
-    })
-    .compileComponents();
-  });
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [KeywordsManagementComponent],
+      imports: [
+        NoopAnimationsModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableModule,
+      ],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(KeywordsComponent);
+    fixture = TestBed.createComponent(KeywordsManagementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 });
