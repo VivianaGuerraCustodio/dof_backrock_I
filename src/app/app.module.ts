@@ -16,6 +16,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { UsersManagementComponent } from './Components/admin/users-management/users-management.component';
@@ -58,6 +62,9 @@ firebase.default.initializeApp(environment.firebase);
     MaterialModule,
     MatDatepickerModule,
     HttpClientModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

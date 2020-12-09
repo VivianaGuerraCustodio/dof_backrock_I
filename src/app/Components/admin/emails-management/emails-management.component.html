@@ -1,14 +1,25 @@
 <form [formGroup]="addEmailForm" (ngSubmit)="addEmail()">
-  <label for="">Nombre: <input type="text" formControlName="name" /></label>
-  <label for="">Email: <input type="text" formControlName="email" /></label>
-  <select placeholder="role" formControlName="role">
-    <option value="" selected>Elige un rol</option>
-    <option *ngFor="let role of roles">
-      {{ role.cat }}
-    </option>
-  </select>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
 
-  <button type="submit">Agregar</button>
+    <mat-form-field appearance="fill">
+      <mat-label>Email:</mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Elige un rol</mat-label>
+      <mat-select formControlName="role">
+        <mat-option [value]="role.cat" *ngFor="let role of roles">{{
+          role.cat
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button type="submit">Agregar</button>
+  </div>
 </form>
 
 <div class="mat-elevation-z8">

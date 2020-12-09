@@ -9,10 +9,13 @@
 </mat-form-field> -->
 
 <form [formGroup]="addKeyForm" novalidate (ngSubmit)="addKey()">
-  <label for=""
-    >Palabra clave: <input type="text" formControlName="key"
-  /></label>
-  <button type="submit">Agregar</button>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Palabra clave:</mat-label>
+      <input matInput formControlName="key" />
+    </mat-form-field>
+    <button mat-raised-button type="submit">Agregar</button>
+  </div>
 </form>
 
 <!-- [dataSource]="dataSource.data" -->
