@@ -13,7 +13,6 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.userLogged = this.authService.hasUser();
-    console.log(this.userLogged);
   }
 
   logoutUser(): void {
@@ -22,8 +21,6 @@ export class MenuComponent implements OnInit {
       .then(() => {
         this.router.navigate(['inicio']);
       })
-      .catch((e) => {
-        console.log(e);
-      });
+      .catch((e) => {});
   }
 }

@@ -38,13 +38,11 @@ export class AuthenticationComponent implements OnInit {
   async loginUser(): Promise<void> {
     const email = this.authForm.get('email').value;
     const password = this.authForm.get('password').value;
-    console.log(email, password);
 
     this.authService
       .loginUser(email, password)
       .then(() => {
         // this.router.navigateByUrl('home');
-        console.log('inicio de sesión con exito');
         this.router.navigate(['documentos']);
       })
       .catch(() => {
@@ -53,7 +51,6 @@ export class AuthenticationComponent implements OnInit {
   }
 
   resetPassword(): void {
-    console.log('reestableciendo pass');
     const email = this.authForm.get('email').value;
     this.authService.resetPassword(email);
     alert('Recibiras un correo para cambiar tu contraseña');
@@ -65,9 +62,7 @@ export class AuthenticationComponent implements OnInit {
       .then(() => {
         this.router.navigate(['inicio']);
       })
-      .catch((e) => {
-        console.log(e);
-      });
+      .catch((e) => {});
   }
 
   ngOnInit(): void {}
