@@ -4,7 +4,7 @@ import { AuthenticationComponent } from './Components/authentication/authenticat
 import { AdminComponent } from './Components/admin/admin.component';
 import { DocumentsComponent } from './Components/documents/documents.component';
 import { SecurityComponent } from './Components/security/security.component';
-import { AdminGuard } from './admin.guard';
+import { AdminGuard } from './Guards/admin.guard';
 
 const routes: Routes = [
   {

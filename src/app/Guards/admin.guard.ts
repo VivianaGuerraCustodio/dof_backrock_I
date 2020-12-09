@@ -6,7 +6,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { fromEventPattern, Observable } from 'rxjs';
-import { AuthService } from './Services/auth-service/auth.service';
+import { AuthService } from '../Services/auth-service/auth.service';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable({
