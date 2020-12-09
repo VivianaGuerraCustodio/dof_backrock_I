@@ -79,8 +79,6 @@ export class EmailsManagementComponent implements OnInit {
     const email = this.addEmailForm.value.email;
     const role = this.addEmailForm.value.role;
 
-    console.log(role);
-
     if (name && email && role !== '' && role != null) {
       this.emailsManagementService
         .addEmail(name, email, role)
@@ -95,11 +93,6 @@ export class EmailsManagementComponent implements OnInit {
       alert('Faltan campos');
     }
   }
-
-  // userRegister(): any {
-  //   const email = this.addUserForm.value.email;
-  //   this.emailsManagementService.userRegister(email);
-  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

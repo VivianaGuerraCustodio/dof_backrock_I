@@ -75,11 +75,7 @@ export class KeywordsManagementComponent implements AfterViewInit, OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    console.log('filtrando');
-    console.log(this.dataSource.data.filter);
 
     this.dataSource.data.filter = filterValue.trim().toLowerCase();
-
-    console.log(filterValue.trim().toLowerCase());
   }
 }

@@ -1,13 +1,3 @@
-<!-- <mat-form-field>
-  <mat-label>Buscador</mat-label>
-  <input
-    matInput
-    (keyup)="applyFilter($event)"
-    placeholder="Ej. Camila"
-    #input
-  />
-</mat-form-field> -->
-
 <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
   <div class="example-container">
     <mat-form-field appearance="fill">
@@ -30,14 +20,6 @@
     </mat-form-field>
     <button mat-raised-button type="submit">Agregar</button>
   </div>
-  <!-- <label for="">Nombre: <input type="text" formControlName="name" /></label>
-  <label for="">Email: <input type="text" formControlName="email" /></label>
-  <select placeholder="role" formControlName="role">
-    <option value="" selected>Elige un rol</option>
-    <option *ngFor="let role of roles">
-      {{ role.cat }}
-    </option>
-  </select> -->
 </form>
 
 <div class="mat-elevation-z8">

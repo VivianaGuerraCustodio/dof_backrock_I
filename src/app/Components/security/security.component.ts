@@ -10,11 +10,7 @@ export class SecurityComponent implements OnInit {
   newPassword: string;
   hide = true;
   constructor(private authService: AuthService) {}
-  // confirm() {
-  //   alert(
-  //     'tu contraseña se actualizó de manera exitosa, por favor revisa tu correo '
-  //   );
-  // }
+
   ngOnInit(): void {}
 
   updatePass() {
