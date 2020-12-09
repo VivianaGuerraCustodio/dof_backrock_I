@@ -80,6 +80,7 @@ export class UsersManagementComponent implements AfterViewInit, OnInit {
     const role = this.addUserForm.value.role;
 
     console.log(role);
+    this.userRegister();
 
     if (name && email && role !== '' && role != null) {
       this.usersManagementService

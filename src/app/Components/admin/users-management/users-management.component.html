@@ -8,11 +8,7 @@
   />
 </mat-form-field> -->
 
-<form
-  [formGroup]="addUserForm"
-  (ngSubmit)="addUser()"
-  (ngSubmit)="userRegister()"
->
+<form [formGroup]="addUserForm" (ngSubmit)="addUser()">
   <div class="example-container">
     <mat-form-field appearance="fill">
       <mat-label>Nombre</mat-label>
