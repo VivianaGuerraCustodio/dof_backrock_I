@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Keywords } from '../../../Models/keywords.model';
 import { KeywordsManagementDataSource } from './keywords-management-datasource';
-import { CrudService } from '../../../Services/crud.service';
+import { CrudKeywordsService } from '../../../Services/crud-keywords-service/crud-keywords.service';
 import { ActivatedRoute } from '@angular/router';
 import { Validators, FormBuilder } from '@angular/forms';
 
@@ -19,7 +19,10 @@ export class KeywordsManagementComponent implements AfterViewInit, OnInit {
     // newKey: this.fb.array([]),
   });
   public itemId: string;
-  constructor(private crudService: CrudService, private fb: FormBuilder) {}
+  constructor(
+    private crudService: CrudKeywordsService,
+    private fb: FormBuilder
+  ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

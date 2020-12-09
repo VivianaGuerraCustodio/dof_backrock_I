@@ -15,7 +15,6 @@ export class UsersTableDataSource extends DataSource<Users> {
   paginator: MatPaginator;
   sort: MatSort;
 
-  // constructor(private crudService: CrudService) {
   constructor(private obsUsers: Observable<Users[]>) {
     super();
   }
