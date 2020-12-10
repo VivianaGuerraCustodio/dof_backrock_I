@@ -1,18 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../Services/auth.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../Services/auth-service/auth.service';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  constructor(private authServices: AuthService) {}
+  userLogged;
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userLogged = this.authService.hasUser();
+  }
 
-  logoutUser() {
-    this.authServices.logoutUser().then(() => {
-      console.log('chao');
-    });
+  logoutUser(): void {
+    this.authService
+      .logoutUser()
+      .then(() => {
+        this.router.navigate(['inicio']);
+      })
+      .catch((e) => {});
   }
 }

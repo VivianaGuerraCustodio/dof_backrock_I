@@ -26,8 +26,8 @@ export class UsersManagementComponent implements AfterViewInit, OnInit {
   });
 
   roles = [
-    { cat: 'Administrador', val: 'admin' },
     { cat: 'Usuario', val: 'user' },
+    { cat: 'Administrador', val: 'admin' },
   ];
 
   public users$;
@@ -45,7 +45,7 @@ export class UsersManagementComponent implements AfterViewInit, OnInit {
 
   dataSource: UsersTableDataSource;
 
-  displayedColumns = ['name', 'email', 'role', 'edit', 'delete'];
+  displayedColumns = ['name', 'email', 'role', 'delete'];
 
   ngOnInit(): void {
     this.getData();
@@ -53,8 +53,6 @@ export class UsersManagementComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     this.usersManagementService.getUsers().subscribe((users) => {
-      console.log(users);
-
       this.dataSource.data = users;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -80,24 +78,27 @@ export class UsersManagementComponent implements AfterViewInit, OnInit {
     const name = this.addUserForm.value.name;
     const email = this.addUserForm.value.email;
     const role = this.addUserForm.value.role;
-    console.log(name, email, role);
 
-    this.usersManagementService
-      .addUser(name, email, role)
-      .then(() => {
-        alert('El usuario se añadió a la base de datos');
-        this.getData();
-      })
-      .catch((err) => {
-        alert('Error ' + err);
-      });
+    this.userRegister();
+
+    if (name && email && role !== '' && role != null) {
+      this.usersManagementService
+        .addUser(name, email, role)
+        .then(() => {
+          alert('El usuario se añadió a la base de datos');
+          this.getData();
+        })
+        .catch((err) => {
+          alert('Error ' + err);
+        });
+    } else {
+      alert('Faltan campos');
+    }
   }
 
   userRegister(): any {
     const email = this.addUserForm.value.email;
-    this.usersManagementService.userRegister(email).then(() => {
-      alert('El usuario se registro');
-    });
+    this.usersManagementService.userRegister(email);
   }
 
   applyFilter(event: Event) {

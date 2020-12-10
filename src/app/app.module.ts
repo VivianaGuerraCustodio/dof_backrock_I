@@ -10,13 +10,16 @@ import { AppComponent } from './app.component';
 import { KeywordsManagementComponent } from './Components/admin/keywords-management/keywords-management.component';
 import { AuthenticationComponent } from './Components/authentication/authentication.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { KeywordsTableComponent } from './Components/keywords-table/keywords-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { UsersManagementComponent } from './Components/admin/users-management/users-management.component';
@@ -36,7 +39,6 @@ firebase.default.initializeApp(environment.firebase);
     AppComponent,
     KeywordsManagementComponent,
     AuthenticationComponent,
-    KeywordsTableComponent,
     UsersManagementComponent,
     EmailsManagementComponent,
     AdminComponent,
@@ -60,6 +62,9 @@ firebase.default.initializeApp(environment.firebase);
     MaterialModule,
     MatDatepickerModule,
     HttpClientModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

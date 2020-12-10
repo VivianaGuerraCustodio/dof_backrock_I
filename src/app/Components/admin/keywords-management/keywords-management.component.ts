@@ -1,75 +1,81 @@
-import { Component, OnInit } from '@angular/core';
-import { CrudService } from '../../../Services/crud.service';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTable } from '@angular/material/table';
+import { Keywords } from '../../../Models/keywords.model';
+import { KeywordsManagementDataSource } from './keywords-management-datasource';
+import { CrudKeywordsService } from '../../../Services/crud-keywords-service/crud-keywords.service';
 import { ActivatedRoute } from '@angular/router';
-import {
-  Validators,
-  FormBuilder,
-  FormArray,
-  FormControl,
-} from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-keywords-management',
   templateUrl: './keywords-management.component.html',
   styleUrls: ['./keywords-management.component.scss'],
 })
-export class KeywordsManagementComponent implements OnInit {
+export class KeywordsManagementComponent implements AfterViewInit, OnInit {
   addKeyForm = this.fb.group({
     key: [null, Validators.required],
-    newKey: this.fb.array([]),
+    // newKey: this.fb.array([]),
   });
-
-  public keys$;
   public itemId: string;
-
   constructor(
-    private crudService: CrudService,
-    private route: ActivatedRoute,
+    private crudService: CrudKeywordsService,
     private fb: FormBuilder
   ) {}
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<Keywords>;
+
+  dataSource: KeywordsManagementDataSource;
+
+  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  displayedColumns = ['key', 'delete'];
+
   ngOnInit(): void {
-    this.itemId = this.route.snapshot.paramMap.get('id');
-    this.crudService
-      .getKey()
-      .pipe()
-      .subscribe((key) => {
-        this.keys$ = key;
-      });
+    this.getData();
   }
 
-  deleteKey(keyId: string): void {
+  getData() {
+    this.dataSource = new KeywordsManagementDataSource(
+      this.crudService.getKey()
+    );
+  }
+
+  ngAfterViewInit(): void {
+    this.crudService.getAllKeywords().subscribe((key) => {
+      this.dataSource.data = key;
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.table.dataSource = this.dataSource;
+    });
+  }
+
+  deleteKeyword(row: Keywords): void {
     const confirmation = confirm('Seguro que deseas eliminar esta palabra?');
     if (confirmation) {
-      this.crudService.deleteKey(keyId);
+      this.crudService.deleteKey(row.id);
+      this.getData();
     }
   }
 
-  addKey(): any {
+  addKey(): void {
     const key = this.addKeyForm.value.key;
-
     this.crudService
       .addKey(key)
       .then(() => {
         alert('La palabra se añadió');
+        this.getData();
       })
       .catch((err) => {
         alert('Error ' + err);
       });
   }
 
-  // get newKey(): FormArray {
-  //   return this.addKeyForm.get('newKey') as FormArray;
-  // }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
 
-  // addNewKey() {
-  //   const keys = this.fb.group({
-  //     key: new FormControl(''),
-  //   });
-  //   this.newKey.push(keys);
-  // }
-
-  // updateKey(key, id) {
-  //   console.log(key);
-  // }
+    this.dataSource.data.filter = filterValue.trim().toLowerCase();
+  }
 }

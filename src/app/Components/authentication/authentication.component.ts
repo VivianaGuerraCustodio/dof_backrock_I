@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../Services/auth.service';
+import { AuthService } from '../../Services/auth-service/auth.service';
 
 @Component({
   selector: 'app-authentication',
@@ -38,22 +38,31 @@ export class AuthenticationComponent implements OnInit {
   async loginUser(): Promise<void> {
     const email = this.authForm.get('email').value;
     const password = this.authForm.get('password').value;
-    console.log(email, password);
 
-    this.authService.loginUser(email, password).then(() => {
-      // this.router.navigateByUrl('home');
-      console.log('inicio de sesión con exito');
-    });
+    this.authService
+      .loginUser(email, password)
+      .then(() => {
+        // this.router.navigateByUrl('home');
+        this.router.navigate(['documentos']);
+      })
+      .catch(() => {
+        alert('Usuario invalido');
+      });
   }
 
   resetPassword(): void {
-    console.log('reestableciendo pass');
     const email = this.authForm.get('email').value;
     this.authService.resetPassword(email);
+    alert('Recibiras un correo para cambiar tu contraseña');
   }
 
   logout(): void {
-    this.authService.logoutUser();
+    this.authService
+      .logoutUser()
+      .then(() => {
+        this.router.navigate(['inicio']);
+      })
+      .catch((e) => {});
   }
 
   ngOnInit(): void {}

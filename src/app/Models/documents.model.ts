@@ -1,3 +1,5 @@
 export interface Documents {
-  documents: Array<object>;
+  id: string;
+  text: string;
+  href: string;
 }

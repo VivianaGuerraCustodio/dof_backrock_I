@@ -5,13 +5,13 @@ import {
 } from '@angular/fire/firestore';
 import { ActionSequence } from 'protractor';
 import { Observable } from 'rxjs';
-import { Keywords } from '../Models/keywords.model';
+import { Keywords } from '../../Models/keywords.model';
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CrudService {
+export class CrudKeywordsService {
   constructor(private firestore: AngularFirestore) {}
 
   addKey(key: string): Promise<void> {

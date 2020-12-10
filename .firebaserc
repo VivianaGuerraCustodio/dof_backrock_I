@@ -4,7 +4,7 @@
   },
   "targets": {
     "blackrock-dof": {
-      "hosting": {
+      "site": {
         "dof-blackrock": [
           "blackrock-dof"
         ]

@@ -9,8 +9,8 @@ export class DocumentsService {
   constructor(private http: HttpClient) {}
 
   /** POST: add a new hero to the database */
-  getDocuments(dateStart): Observable<Documents> {
-    const documentsUrl = 'http://localhost:5000/documentos';
+  getDocuments(dateStart): Observable<Documents[]> {
+    const documentsUrl = 'https://api-dof.herokuapp.com/documentos';
     const body = JSON.stringify({ dateStart });
 
     const httpOptions = {
@@ -19,6 +19,6 @@ export class DocumentsService {
       }),
     };
 
-    return this.http.post<Documents>(documentsUrl, body, httpOptions);
+    return this.http.post<Documents[]>(documentsUrl, body, httpOptions);
   }
 }

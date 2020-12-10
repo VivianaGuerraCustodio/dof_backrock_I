@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
-import { Documents } from '../../Models/documents.model';
+import { Users } from '../../../Models/users.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
@@ -10,12 +10,12 @@ import { Observable, merge } from 'rxjs';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class DocumentsTableDataSource extends DataSource<Documents> {
-  data: any = this.obsDocuments;
+export class EmailsTableDataSource extends DataSource<Users> {
+  data: any = this.obsEmails;
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor(private obsDocuments: Observable<Documents[]>) {
+  constructor(private obsEmails: Observable<Users[]>) {
     super();
   }
 
@@ -24,7 +24,7 @@ export class DocumentsTableDataSource extends DataSource<Documents> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<Documents[]> {
+  connect(): Observable<Users[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
 
@@ -51,7 +51,7 @@ export class DocumentsTableDataSource extends DataSource<Documents> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: Documents[]) {
+  private getPagedData(data: Users[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -60,7 +60,7 @@ export class DocumentsTableDataSource extends DataSource<Documents> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: Documents[]) {
+  private getSortedData(data: Users[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -68,8 +68,10 @@ export class DocumentsTableDataSource extends DataSource<Documents> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'text':
-          return compare(a.text.toLowerCase(), b.text.toLowerCase(), isAsc);
+        case 'name':
+          return compare(a.name.toLowerCase(), b.name.toLowerCase(), isAsc);
+        case 'email':
+          return compare(+a.email, +b.email, isAsc);
         default:
           return 0;
       }
